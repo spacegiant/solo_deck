@@ -7,12 +7,12 @@ import 'package:dropbox_client/dropbox_client.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-const String dropbox_clientId = 'test-flutter-dropbox';
-const String dropbox_key = 'u9b4dmjiul7f6fh';
-const String dropbox_secret = '9tje7tz4bdupcvy';
+enum CloudProvider { dropbox, google, localOnly }
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
   return runApp(MyApp());
 }
 
@@ -32,6 +32,7 @@ class _HomeState extends State<Home> {
   String? accessToken;
   String? credentials;
   bool showInstruction = false;
+  CloudProvider cloudProvider = CloudProvider.localOnly;
 
   @override
   void initState() {
@@ -41,12 +42,11 @@ class _HomeState extends State<Home> {
   }
 
   Future initDropbox() async {
-    if (dropbox_key == 'dropbox_key') {
-      showInstruction = true;
-      return;
-    }
+    String dropboxClientid = dotenv.env['DROPBOX_APP_ID'] ?? '';
+    String dropboxKey = dotenv.env['DROPBOX_APP_KEY'] ?? '';
+    String dropboxSecret = dotenv.env['DROPBOX_APP_SECRET'] ?? '';
 
-    await Dropbox.init(dropbox_clientId, dropbox_key, dropbox_secret);
+    await Dropbox.init(dropboxClientid, dropboxKey, dropboxSecret);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('dropboxAccessToken');
