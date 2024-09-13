@@ -1,0 +1,44 @@
+PODS:
+  - dropbox_client (1.1.0):
+    - Flutter
+    - ObjectiveDropboxOfficial
+  - Flutter (1.0.0)
+  - ObjectiveDropboxOfficial (7.4.1)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - dropbox_client (from `.symlinks/plugins/dropbox_client/ios`)
+  - Flutter (from `Flutter`)
+  - ObjectiveDropboxOfficial
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+
+SPEC REPOS:
+  trunk:
+    - ObjectiveDropboxOfficial
+
+EXTERNAL SOURCES:
+  dropbox_client:
+    :path: ".symlinks/plugins/dropbox_client/ios"
+  Flutter:
+    :path: Flutter
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+
+SPEC CHECKSUMS:
+  dropbox_client: 0d72681ee5ad3a49eb06e8ca779e0561d7f129a0
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  ObjectiveDropboxOfficial: 8699fa65969a94f8305d8dabf9c9a8dd856ac598
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+
+PODFILE CHECKSUM: 2e8d041641681d026c4de366b5092bacaaf78b44
+
+COCOAPODS: 1.15.2
