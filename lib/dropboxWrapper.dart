@@ -271,8 +271,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
                         ElevatedButton(
                           child: const Text('test thumbnail'),
                           onPressed: () async {
-                            // await getThumbnail('/icon64.png');
-                            await getThumbnail('/Get Started with Dropbox.pdf');
+                            await getThumbnail('/moustache.jpg');
                           },
                         ),
                         if (thumbImage != null) Image.memory(thumbImage!),
@@ -352,4 +351,20 @@ class Instructions extends StatelessWidget {
       ),
     );
   }
+}
+
+String image(String thumbnail) {
+  String placeholder =
+      "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+  if (thumbnail.isEmpty) {
+    thumbnail = placeholder;
+  } else {
+    if (thumbnail.length % 4 > 0) {
+      thumbnail +=
+          '=' * (4 - thumbnail.length % 4); // as suggested by Albert221
+    }
+  }
+  // final byteImage = const Base64Decoder().convert(thumbnail);
+  // String image = Image.memory(byteImage);
+  return thumbnail;
 }
