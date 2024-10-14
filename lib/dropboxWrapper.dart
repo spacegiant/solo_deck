@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:dropbox_client/dropbox_client.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -42,12 +42,12 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
   }
 
   Future<bool> checkAuthorized(bool authorize) async {
-    final _credentials = await Dropbox.getCredentials();
-    if (_credentials != null) {
-      if (credentials == null || _credentials!.isEmpty) {
-        credentials = _credentials;
+    var credentials = await Dropbox.getCredentials();
+    if (credentials != null) {
+      if (credentials.isEmpty) {
+        credentials = credentials;
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('dropboxCredentials', credentials!);
+        prefs.setString('dropboxCredentials', credentials);
       }
       return true;
     }
@@ -63,13 +63,13 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
     }
 
     if (authorize) {
-      if (credentials != null && credentials!.isNotEmpty) {
+      if (credentials != null && credentials.isNotEmpty) {
+        final credentials = await Dropbox.getCredentials();
         await Dropbox.authorizeWithCredentials(credentials!);
-        final _credentials = await Dropbox.getCredentials();
-        if (_credentials != null) {
+        if (kDebugMode) {
           print('authorizeWithCredentials!');
-          return true;
         }
+        return true;
       }
       if (accessToken != null && accessToken!.isNotEmpty) {
         await Dropbox.authorizeWithAccessToken(accessToken!);
@@ -144,7 +144,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
       var tempDir = await getTemporaryDirectory();
       var filepath = '${tempDir.path}/test_upload.txt';
       File(filepath).writeAsStringSync(
-          'contents.. from ' + (Platform.isIOS ? 'iOS' : 'Android') + '\n');
+          'contents.. from ${Platform.isIOS ? 'iOS' : 'Android'}\n');
 
       final result =
           await Dropbox.upload(filepath, '/test_upload.txt', (uploaded, total) {
@@ -205,7 +205,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
         title: const Text('Dropbox example app'),
       ),
       body: showInstruction
-          ? Instructions()
+          ? const Instructions()
           : Builder(
               builder: (context) {
                 return Column(
@@ -215,61 +215,61 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
                     Wrap(
                       children: <Widget>[
                         ElevatedButton(
-                          child: Text('authorize'),
                           onPressed: authorize,
+                          child: const Text('authorize'),
                         ),
                         ElevatedButton(
-                          child: Text('authorizeWithAccessToken'),
                           onPressed: accessToken == null
                               ? null
                               : authorizeWithAccessToken,
+                          child: const Text('authorizeWithAccessToken'),
                         ),
                         ElevatedButton(
-                          child: Text('unlink'),
                           onPressed: unlinkToken,
+                          child: const Text('unlink'),
                         ),
                       ],
                     ),
                     Wrap(
                       children: <Widget>[
                         ElevatedButton(
-                          child: Text('authorizePKCE'),
                           onPressed: authorizePKCE,
+                          child: const Text('authorizePKCE'),
                         ),
                         ElevatedButton(
-                          child: Text('authorizeWithCredentials'),
                           onPressed: credentials == null
                               ? null
                               : authorizeWithCredentials,
+                          child: const Text('authorizeWithCredentials'),
                         ),
                         ElevatedButton(
-                          child: Text('unlink'),
                           onPressed: unlinkCredentials,
+                          child: const Text('unlink'),
                         ),
                       ],
                     ),
                     Wrap(
                       children: <Widget>[
                         ElevatedButton(
-                          child: Text('list root folder'),
+                          child: const Text('list root folder'),
                           onPressed: () async {
                             await listFolder('');
                           },
                         ),
                         ElevatedButton(
-                          child: Text('test upload'),
+                          child: const Text('test upload'),
                           onPressed: () async {
                             await uploadTest();
                           },
                         ),
                         ElevatedButton(
-                          child: Text('test download'),
+                          child: const Text('test download'),
                           onPressed: () async {
                             await downloadTest();
                           },
                         ),
                         ElevatedButton(
-                          child: Text('test thumbnail'),
+                          child: const Text('test thumbnail'),
                           onPressed: () async {
                             // await getThumbnail('/icon64.png');
                             await getThumbnail('/Get Started with Dropbox.pdf');
@@ -277,7 +277,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
                         ),
                         if (thumbImage != null) Image.memory(thumbImage!),
                         ElevatedButton(
-                          child: Text('getAccountInfo'),
+                          child: const Text('getAccountInfo'),
                           onPressed: () async {
                             await getAccountInfo();
                           },
@@ -324,13 +324,13 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
 
 class Instructions extends StatelessWidget {
   const Instructions({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
