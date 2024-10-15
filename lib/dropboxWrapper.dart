@@ -28,11 +28,11 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
   }
 
   Future initDropbox() async {
-    String dropboxClientid = dotenv.env['DROPBOX_APP_ID'] ?? '';
+    String dropboxClientId = dotenv.env['DROPBOX_APP_ID'] ?? '';
     String dropboxKey = dotenv.env['DROPBOX_APP_KEY'] ?? '';
     String dropboxSecret = dotenv.env['DROPBOX_APP_SECRET'] ?? '';
 
-    await Dropbox.init(dropboxClientid, dropboxKey, dropboxSecret);
+    await Dropbox.init(dropboxClientId, dropboxKey, dropboxSecret);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     accessToken = prefs.getString('dropboxAccessToken');
@@ -192,7 +192,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
       print(accountInfo.name!.displayName);
       print(accountInfo.email!);
       print(accountInfo.rootInfo!.homeNamespaceId!);
-      print(accountInfo.profilePhotoUrl!);
+      print(accountInfo.profilePhotoUrl);
     }
   }
 
@@ -212,6 +212,7 @@ class _DropboxWrapperState extends State<DropboxWrapper> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    const Text('Is Connected to Dropbox? yes/no'),
                     Wrap(
                       children: <Widget>[
                         ElevatedButton(
@@ -351,20 +352,4 @@ class Instructions extends StatelessWidget {
       ),
     );
   }
-}
-
-String image(String thumbnail) {
-  String placeholder =
-      "iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
-  if (thumbnail.isEmpty) {
-    thumbnail = placeholder;
-  } else {
-    if (thumbnail.length % 4 > 0) {
-      thumbnail +=
-          '=' * (4 - thumbnail.length % 4); // as suggested by Albert221
-    }
-  }
-  // final byteImage = const Base64Decoder().convert(thumbnail);
-  // String image = Image.memory(byteImage);
-  return thumbnail;
 }
