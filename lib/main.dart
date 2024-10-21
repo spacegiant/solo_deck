@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:untitled/dropboxWrapper.dart';
 
 import 'StorageOptionManager.dart';
 
@@ -36,8 +35,6 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    // Has user set the storage area? e.g. local-only or Dropbox?
-
     return const StorageOptionManager();
   }
 }
