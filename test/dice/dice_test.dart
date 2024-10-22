@@ -37,8 +37,8 @@ void main() {
       DieSide dieSide = DieSide(label: '6');
       expect(dieSide.glyph, null);
 
-      dieSide.glyph = 'path_to_image.svg';
-      expect(dieSide.glyph, 'path_to_image.svg');
+      dieSide.glyph = Glyph.skull;
+      expect(dieSide.glyph, Glyph.skull);
     });
 
     test('DieSide takes an optional value int', () {

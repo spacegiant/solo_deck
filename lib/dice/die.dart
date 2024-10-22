@@ -93,7 +93,7 @@ class DieRollResult {
 class DieSide {
   // label needed for a11y
   late String label;
-  String? glyph;
+  Glyph? glyph;
   int? value;
   Color overrideColour = const Color(0xFFCCCCCC);
   Color overrideTextColour = const Color(0xFF000000);
@@ -101,5 +101,6 @@ class DieSide {
   DieSide({
     required this.label,
     this.value,
+    this.glyph,
   });
 }

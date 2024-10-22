@@ -2,13 +2,17 @@ import 'die.dart';
 
 class DiceRoll {
   late List<Die> thrownDice;
+  int modifier;
   bool? explode;
   bool? advantage;
   bool? disadvantage;
 
-  DiceRoll({required this.thrownDice});
+  DiceRoll({
+    required this.thrownDice,
+    this.modifier = 0,
+  });
 
-  DiceResult diceRollResult() {
+  DiceRollResult diceRollResult() {
     List<DieRollResult> results = thrownDice.map((die) => die.roll()).toList();
     Iterable<int?> mapOfValues = results.map((result) => result.value);
     var total = mapOfValues.reduce((a, b) {
@@ -19,19 +23,19 @@ class DiceRoll {
       }
     });
 
-    return DiceResult(
+    return DiceRollResult(
       results: results,
-      total: total,
+      total: total != null ? total + modifier : null,
     );
   }
 }
 
-class DiceResult {
+class DiceRollResult {
   String sortedBy = 'ascending';
   int? total;
   late List<DieRollResult> results;
 
-  DiceResult({
+  DiceRollResult({
     required this.results,
     this.total,
   });
