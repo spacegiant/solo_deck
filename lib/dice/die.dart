@@ -82,7 +82,6 @@ enum PolyhedralImage {
   // TODO: Create and add the images to the repo
   fallback('fallback.svg'),
   two('two.svg'),
-  three('three.svg'),
   four('four.svg'),
   five('five.svg'),
   six('six.svg'),

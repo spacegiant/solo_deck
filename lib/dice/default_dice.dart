@@ -21,7 +21,7 @@ Die d3 = Die(
   dieTypeGlyph: Glyph.d3,
   diceName: 'd3',
   faces: generateFaces(numberOfFaces: 3),
-  polyhedralImage: PolyhedralImage.three,
+  polyhedralImage: PolyhedralImage.six,
 );
 
 Die d4 = Die(

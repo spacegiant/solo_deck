@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
+import 'dice/polyhedrals/polyhedral_six.dart';
 
 void main() async {
   return runApp(const MyApp());
@@ -28,6 +31,6 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('APP');
+    return Container(child: polyhedralSix());
   }
 }
