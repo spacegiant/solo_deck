@@ -25,15 +25,35 @@ var diceCollections = <String, List<Die>>{
 enum Glyph {
   // TODO: Create and add the images to the repo
   // TODO: Add property to describe number placement in relation to Glyph if needed
+
+  // general
   blank('blank.svg'),
   skull('skull.svg'),
+  d2('d2.svg'),
+  d3('d3.svg'),
+  d4('d4.svg'),
+  d5('d5.svg'),
+  d6('d6.svg'),
+  d7('d7.svg'),
+  d8('d8.svg'),
+  d10Units('d10Units.svg'),
+  d10Tens('d10Tens.svg'),
+  d12('d12.svg'),
+  d14('d14.svg'),
+  d16('d16.svg'),
+  d20('d20.svg'),
+  d24('d24.svg'),
+  d30('d30.svg'),
   // walking dead
+  walkingDeadLogo('walkingDeadLogo.svg'),
   target('target.svg'),
   bloodyHand('bloodyHand.svg'),
   // electric state
+  electricStateLogo('electricStateLogo.svg'),
   sadFace('sadFace.svg'),
   maze('maze.svg'),
-  // t2000k
+  // t2k
+  t2kLogo('t2kLogo.svg'),
   crossHair('crossHair.svg'),
   twoCrossHair('twoCrossHair.svg'),
   explosion('explosion.svg'),
@@ -42,8 +62,10 @@ enum Glyph {
   bodyArms('bodyArms.svg'),
   bodyLegs('bodyLegs.svg'),
   // achtung cthulhu
+  achtungCthulhuLogo('achtungCthulhuLogo.svg'),
   cthulhu('cthulhu.svg'),
   // bladerunner
+  bladerunnerLogo('bladerunnerLogo.svg'),
   eye('eye.svg'),
   unicorn('unicorn.svg'),
   // Fate/Fudge
@@ -79,17 +101,21 @@ enum PolyhedralImage {
 }
 
 class Die {
-  String id = '${DateTime.now().millisecondsSinceEpoch}';
+  String? id = '${DateTime.now().millisecondsSinceEpoch}';
   String diceName;
   List<DieSide> faces;
+  Glyph dieTypeGlyph;
   late PolyhedralImage polyhedralImage = PolyhedralImage.fallback;
   // Users can specify dice of certain colours. E.g. red d6, black d6 and white d6 with different meanings attached to each colour
-  late Color colour = const Color(0xff000000);
+  late Color? colour = const Color(0xff000000);
 
   Die({
+    this.id,
     required this.diceName,
     required this.faces,
     required this.polyhedralImage,
+    required this.dieTypeGlyph,
+    this.colour,
   });
 
   DieRollResult roll() {
