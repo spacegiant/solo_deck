@@ -9,21 +9,18 @@ var diceBox = <String, List<Die>>{
   'other': [dF],
 };
 
-var diceCollections = <String, String>{
+var diceCollections = <String, List<Die>>{
   // DEFAULT SETS
-  'General': '',
-  'Zochi': '',
+  'General': [d4, d6, d8, d10Units, d10Tens, d12, d20],
+  'Zochi': [d2, d3, d5, d7, d14, d16, d24, d30],
   // USER DEFINED
-  'fate': '',
-  'walkingDead': '',
-  'electricState': '',
-  't2000k': '',
-  'achtungCthulhu': '',
-  'bladerunner': '',
+  'fate': [dF],
+  'walkingDead': [],
+  'electricState': [],
+  't2000k': [],
+  'achtungCthulhu': [],
+  'bladerunner': [],
 };
-
-// TODO: Should any dice roll allow users to reroll some of the dice, just for flexibility?
-enum DiceRerollFlag { all, individual, none }
 
 enum Glyph {
   // TODO: Create and add the images to the repo
@@ -48,7 +45,12 @@ enum Glyph {
   cthulhu('cthulhu.svg'),
   // bladerunner
   eye('eye.svg'),
-  unicorn('unicorn.svg');
+  unicorn('unicorn.svg'),
+  // Fate/Fudge
+  fateLogo('fateLogo.svg'),
+  fatePlus('fatePlus.svg'),
+  fateBlank('fateBlank.svg'),
+  fateMinus('fateMinus.svg');
 
   final String image;
   const Glyph(this.image);
@@ -83,7 +85,6 @@ class Die {
   late PolyhedralImage polyhedralImage = PolyhedralImage.fallback;
   // Users can specify dice of certain colours. E.g. red d6, black d6 and white d6 with different meanings attached to each colour
   late Color colour = const Color(0xff000000);
-  DiceRerollFlag? rerollFlag = DiceRerollFlag.none;
 
   Die({
     required this.diceName,

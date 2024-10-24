@@ -109,9 +109,9 @@ Die d30 = Die(
 Die dF = Die(
   diceName: 'Fate Die',
   faces: [
-    DieSide(label: '+', value: 1),
-    DieSide(label: '0', value: 0),
-    DieSide(label: '-', value: -1),
+    DieSide(label: '+', value: 1, glyph: Glyph.fatePlus),
+    DieSide(label: '0', value: 0, glyph: Glyph.fateBlank),
+    DieSide(label: '-', value: -1, glyph: Glyph.fateMinus),
   ],
   polyhedralImage: PolyhedralImage.six,
 );
