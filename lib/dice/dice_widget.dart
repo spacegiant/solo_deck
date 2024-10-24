@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:SoloDeck/dice/polyhedrals/inject_colours_into_SVG.dart';
+import 'package:SoloDeck/dice/polyhedrals/polyhedral_five.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_four.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_six.dart';
+import 'package:SoloDeck/dice/polyhedrals/polyhedral_two.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/convert_color_to_hex.dart';
@@ -16,7 +18,7 @@ SvgPicture diceWidget({
 }) {
   return SvgPicture.string(
     injectColoursIntoSVG(
-        p4, convertColorToHex(color), convertColorToHex(highlightColor)),
+        p5, convertColorToHex(color), convertColorToHex(highlightColor)),
     width: width,
     height: width,
   );
