@@ -1,7 +1,6 @@
+import 'package:SoloDeck/dice/dice_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import 'dice/polyhedrals/polyhedral_six.dart';
 
 void main() async {
   return runApp(const MyApp());
@@ -31,6 +30,13 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: polyhedralSix());
+    return CupertinoPageScaffold(
+      child: SafeArea(
+        child: SizedBox(
+          // width: 200,
+          child: diceWidget(),
+        ),
+      ),
+    );
   }
 }
