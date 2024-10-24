@@ -1,9 +1,8 @@
 import 'dart:ui';
 
+import 'package:SoloDeck/dice/default_dice.dart';
+import 'package:SoloDeck/dice/die.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:untitled/dice/die.dart';
-
-import 'utility.dart';
 
 void main() {
   group('Test Die class', () {
@@ -12,7 +11,7 @@ void main() {
     });
 
     test('Die can override fallback polyhedral image', () {
-      expect(d6.polyhedralImage, PolyhedralImage.fallback);
+      expect(d6.polyhedralImage, PolyhedralImage.six);
 
       d6.polyhedralImage = PolyhedralImage.six;
       expect(d6.polyhedralImage, PolyhedralImage.six);
@@ -23,6 +22,10 @@ void main() {
 
       d6.colour = const Color(0xFFFFFFFF);
       expect(d6.colour, const Color(0xFFFFFFFF));
+    });
+
+    test('d100 is correct', () {
+      expect(d10Tens.faces[0].label, '00');
     });
   });
 
@@ -47,14 +50,6 @@ void main() {
 
       dieSide.value = 6;
       expect(dieSide.value, 6);
-    });
-
-    test('DieSide has a default overrideColour that can be overridden', () {
-      DieSide dieSide = DieSide(label: '6');
-      expect(dieSide.overrideColour, const Color(0xFFCCCCCC));
-
-      dieSide.overrideColour = const Color(0xFFFFFFFF);
-      expect(dieSide.overrideColour, const Color(0xFFFFFFFF));
     });
 
     test('DieSide has a default overrideTextColour that can be overridden', () {

@@ -1,6 +1,27 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'default_dice.dart';
+
+var diceBox = <String, List<Die>>{
+  'general': [d4, d6, d8, d10Units, d10Tens, d12, d20],
+  'zocchi': [d2, d3, d5, d7, d14, d16, d24, d30],
+  'other': [dF],
+};
+
+var diceCollections = <String, String>{
+  // DEFAULT SETS
+  'General': '',
+  'Zochi': '',
+  // USER DEFINED
+  'fate': '',
+  'walkingDead': '',
+  'electricState': '',
+  't2000k': '',
+  'achtungCthulhu': '',
+  'bladerunner': '',
+};
+
 // TODO: Should any dice roll allow users to reroll some of the dice, just for flexibility?
 enum DiceRerollFlag { all, individual, none }
 
@@ -59,7 +80,7 @@ class Die {
   String id = '${DateTime.now().millisecondsSinceEpoch}';
   String diceName;
   List<DieSide> faces;
-  late PolyhedralImage? polyhedralImage = PolyhedralImage.fallback;
+  late PolyhedralImage polyhedralImage = PolyhedralImage.fallback;
   // Users can specify dice of certain colours. E.g. red d6, black d6 and white d6 with different meanings attached to each colour
   late Color colour = const Color(0xff000000);
   DiceRerollFlag? rerollFlag = DiceRerollFlag.none;
@@ -67,6 +88,7 @@ class Die {
   Die({
     required this.diceName,
     required this.faces,
+    required this.polyhedralImage,
   });
 
   DieRollResult roll() {
@@ -95,7 +117,6 @@ class DieSide {
   late String label;
   Glyph? glyph;
   int? value;
-  Color overrideColour = const Color(0xFFCCCCCC);
   Color overrideTextColour = const Color(0xFF000000);
 
   DieSide({

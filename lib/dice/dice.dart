@@ -5,9 +5,6 @@
 * - package returns the dice rolls
 * */
 
-import 'dart:math';
-import 'dart:ui';
-
 import 'die.dart';
 
 /*

@@ -1,7 +1,6 @@
+import 'package:SoloDeck/dice/default_dice.dart';
+import 'package:SoloDeck/dice/dice_roll.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:untitled/dice/dice_roll.dart';
-
-import 'utility.dart';
 
 void main() {
   group('Test DiceRoll.diceRollResult', () {
