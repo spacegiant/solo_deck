@@ -33,16 +33,85 @@ class HomeState extends State<Home> {
     return DefaultTextStyle(
       style: TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: 'OxygenMono',
+        fontFamily: 'RussoOne',
       ),
       child: CupertinoPageScaffold(
         child: SafeArea(
-          child: Row(
+          child: Wrap(
             // width: 200,
             children: [
-              diceWidget(polyhedral: Polyhedrals.poly12),
-              diceWidget(polyhedral: Polyhedrals.poly20),
-              diceWidget(polyhedral: Polyhedrals.poly4, nudgePercent: 0.275),
+              diceWidget(
+                value: '2',
+                label: 'd2',
+                polyhedral: Polyhedrals.poly2,
+              ),
+              diceWidget(
+                value: '4',
+                label: 'd4',
+                polyhedral: Polyhedrals.poly4,
+                nudgePercent: 0.12,
+              ),
+              diceWidget(
+                value: '5',
+                label: 'd5',
+                polyhedral: Polyhedrals.poly5,
+                nudgePercent: 0.17,
+              ),
+              diceWidget(
+                value: '6',
+                label: 'd6',
+                polyhedral: Polyhedrals.poly6,
+              ),
+              diceWidget(
+                value: '7',
+                label: 'd7',
+                polyhedral: Polyhedrals.poly7,
+              ),
+              diceWidget(
+                value: '8',
+                label: 'd8',
+                polyhedral: Polyhedrals.poly8,
+              ),
+              diceWidget(
+                value: '10',
+                label: 'd10',
+                polyhedral: Polyhedrals.poly10,
+              ),
+              diceWidget(
+                value: '12',
+                label: 'd12',
+                polyhedral: Polyhedrals.poly12,
+              ),
+              diceWidget(
+                value: '14',
+                label: 'd14',
+                polyhedral: Polyhedrals.poly14,
+              ),
+              diceWidget(
+                value: '16',
+                label: 'd16',
+                polyhedral: Polyhedrals.poly16,
+              ),
+              diceWidget(
+                value: '20',
+                label: 'd20',
+                polyhedral: Polyhedrals.poly20,
+              ),
+              diceWidget(
+                value: '24',
+                label: 'd24',
+                polyhedral: Polyhedrals.poly24,
+              ),
+              diceWidget(
+                value: '30',
+                label: 'd30',
+                polyhedral: Polyhedrals.poly30,
+              ),
+              diceWidget(
+                value: '2',
+                label: 'd30',
+                polyhedral: Polyhedrals.poly30,
+              ),
             ],
           ),
         ),

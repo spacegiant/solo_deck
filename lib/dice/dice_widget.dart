@@ -43,37 +43,52 @@ Widget diceWidget({
   Color highlightColor = const Color(0xFFCC98A2),
   double width = 60,
   Polyhedrals polyhedral = Polyhedrals.poly6,
-  double nudgePercent = 0.15,
+  double nudgePercent = 0.2,
+  String? label,
+  required String value,
 }) {
-  return SizedBox(
-    width: width,
-    height: width,
-    child: Stack(
-      alignment: Alignment.center,
-      children: [
-        SvgPicture.string(
-          injectColoursIntoSVG(
-            polyhedral.image,
-            convertColorToHex(color),
-            convertColorToHex(highlightColor),
-          ),
-          width: width,
-          height: width,
-        ),
-        Positioned(
-          top: width * nudgePercent,
-          child: Center(
-            child: Text(
-              '1',
-              style: TextStyle(
-                  color: CupertinoColors.white,
-                  fontSize: width * 0.5,
-                  shadows: addShadow(color: color)),
+  return Column(
+    children: [
+      SizedBox(
+        width: width,
+        height: width,
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            SvgPicture.string(
+              injectColoursIntoSVG(
+                polyhedral.image,
+                convertColorToHex(color),
+                convertColorToHex(highlightColor),
+              ),
+              width: width,
+              height: width,
+              alignment: Alignment.bottomCenter,
             ),
-          ),
+            Positioned(
+              // top: width * nudgePercent,
+              bottom: width * nudgePercent,
+              child: Center(
+                child: Text(
+                  value,
+                  style: TextStyle(
+                    letterSpacing: -2,
+                    color: CupertinoColors.white,
+                    fontSize: width * 0.5,
+                    shadows: addShadow(color: color),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
-    ),
+      ),
+      if (label != null)
+        Text(
+          label,
+          style: TextStyle(color: color),
+        ),
+    ],
   );
 }
 

@@ -94,6 +94,6 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   fonts:
-    - family: OxygenMono
+    - family: RussoOne
       fonts:
-        - asset: fonts/Oxygen_Mono/OxygenMono-Regular.ttf
+        - asset: fonts/Russo_One/RussoOne-Regular.ttf
