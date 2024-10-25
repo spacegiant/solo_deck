@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/convert_color_to_hex.dart';
+import 'die.dart';
 
 enum Polyhedrals {
   poly2(p2),
@@ -45,6 +46,7 @@ Widget diceWidget({
   Polyhedrals polyhedral = Polyhedrals.poly6,
   double nudgePercent = 0.2,
   String? label,
+  Glyph? glyph,
   required String value,
 }) {
   return Column(

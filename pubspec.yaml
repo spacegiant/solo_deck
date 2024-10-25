@@ -97,3 +97,6 @@ flutter:
     - family: RussoOne
       fonts:
         - asset: fonts/Russo_One/RussoOne-Regular.ttf
+    - family: Geo
+      fonts:
+        - asset: fonts/Geo/Geo-Regular.ttf

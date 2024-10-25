@@ -11,7 +11,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+    return const CupertinoApp(
+      home: Home(),
+      title: 'Solo Deck',
+      theme: CupertinoThemeData(),
+    );
   }
 }
 
@@ -33,7 +37,7 @@ class HomeState extends State<Home> {
     return DefaultTextStyle(
       style: TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: 'RussoOne',
+        fontFamily: 'Geo',
       ),
       child: CupertinoPageScaffold(
         child: SafeArea(
@@ -109,7 +113,7 @@ class HomeState extends State<Home> {
               ),
               diceWidget(
                 value: '2',
-                label: 'd30',
+                label: 'd6',
                 polyhedral: Polyhedrals.poly30,
               ),
             ],
