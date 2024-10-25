@@ -93,3 +93,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: OxygenMono
+      fonts:
+        - asset: fonts/Oxygen_Mono/OxygenMono-Regular.ttf

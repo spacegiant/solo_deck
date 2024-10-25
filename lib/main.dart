@@ -30,11 +30,21 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: SafeArea(
-        child: SizedBox(
-          // width: 200,
-          child: diceWidget(),
+    return DefaultTextStyle(
+      style: TextStyle(
+        decoration: TextDecoration.none,
+        fontFamily: 'OxygenMono',
+      ),
+      child: CupertinoPageScaffold(
+        child: SafeArea(
+          child: Row(
+            // width: 200,
+            children: [
+              diceWidget(polyhedral: Polyhedrals.poly12),
+              diceWidget(polyhedral: Polyhedrals.poly20),
+              diceWidget(polyhedral: Polyhedrals.poly4, nudgePercent: 0.275),
+            ],
+          ),
         ),
       ),
     );
