@@ -13,7 +13,6 @@ import 'package:SoloDeck/dice/polyhedrals/polyhedral_twenty.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_twenty_four.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_two.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 
