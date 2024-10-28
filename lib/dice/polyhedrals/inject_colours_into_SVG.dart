@@ -6,6 +6,5 @@ String injectColoursIntoSVG(
   String newString = svgString
       .replaceFirst('{{hexColor}}', hexColor)
       .replaceFirst('{{highlightHexColor}}', highlightColor);
-  print(highlightColor);
   return newString;
 }
