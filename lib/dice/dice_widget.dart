@@ -12,6 +12,7 @@ import 'package:SoloDeck/dice/polyhedrals/polyhedral_twelve.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_twenty.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_twenty_four.dart';
 import 'package:SoloDeck/dice/polyhedrals/polyhedral_two.dart';
+import 'package:SoloDeck/utils/change_color_lightness.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
@@ -40,14 +41,20 @@ enum Polyhedrals {
 
 Widget diceWidget({
   Color color = const Color(0xFF88636A),
-  Color highlightColor = const Color(0xFFCC98A2),
-  double width = 60,
+  bool hasDarkText = false,
+  // Color? highlightColor,
+  // Color? diceTextColor,
+  // Color? labelColor,
+  double width = 80,
   Polyhedrals polyhedral = Polyhedrals.poly6,
   double nudgePercent = 0.2,
   String? label,
   Glyph? glyph,
   required String value,
 }) {
+  Color darkenedColor = darken(color, 30);
+  String hexColor = convertColorToHex(color);
+  String hexDarkenedColor = convertColorToHex(darkenedColor);
   return Column(
     children: [
       SizedBox(
@@ -59,8 +66,8 @@ Widget diceWidget({
             SvgPicture.string(
               injectColoursIntoSVG(
                 polyhedral.image,
-                convertColorToHex(color),
-                convertColorToHex(highlightColor),
+                hexColor,
+                hexDarkenedColor,
               ),
               width: width,
               height: width,
@@ -76,7 +83,7 @@ Widget diceWidget({
                     letterSpacing: -2,
                     color: CupertinoColors.white,
                     fontSize: width * 0.5,
-                    shadows: addShadow(color: color),
+                    shadows: addShadow(color: darkenedColor),
                   ),
                 ),
               ),
@@ -87,14 +94,14 @@ Widget diceWidget({
       if (label != null)
         Text(
           label,
-          style: TextStyle(color: color),
+          style: TextStyle(color: darkenedColor),
         ),
     ],
   );
 }
 
 addShadow({
-  double width = 1.5,
+  double width = 1,
   Color color = const Color(0xFF4A4141),
 }) {
   return [

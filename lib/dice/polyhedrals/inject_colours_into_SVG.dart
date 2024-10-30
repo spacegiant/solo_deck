@@ -1,10 +1,10 @@
 String injectColoursIntoSVG(
   String svgString,
   String hexColor,
-  String highlightColor,
+  String shadowColor,
 ) {
   String newString = svgString
-      .replaceFirst('{{hexColor}}', hexColor)
-      .replaceFirst('{{highlightHexColor}}', highlightColor);
+      .replaceFirst('{{hexColor}}', shadowColor)
+      .replaceFirst('{{highlightHexColor}}', hexColor);
   return newString;
 }
