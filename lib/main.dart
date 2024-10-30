@@ -37,6 +37,7 @@ class HomeState extends State<Home> {
     return DefaultTextStyle(
       style: TextStyle(
         decoration: TextDecoration.none,
+        // fontFamily: 'RussoOne',
         fontFamily: 'Geo',
       ),
       child: CupertinoPageScaffold(
@@ -54,15 +55,16 @@ class HomeState extends State<Home> {
                 value: 'D4',
                 label: 'D4',
                 polyhedral: Polyhedrals.poly4,
-                nudgePercent: 0.12,
-                color: Color(0xFFDEA61A),
+                // nudgePercent: 0.12,
+                color: Color(0xFFFFA600),
               ),
               diceWidget(
                 value: 'D5',
                 label: 'D5',
                 polyhedral: Polyhedrals.poly5,
-                nudgePercent: 0.17,
+                // nudgePercent: 0.17,
                 color: Color(0xFFFFED00),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D6',
@@ -93,30 +95,35 @@ class HomeState extends State<Home> {
                 label: 'D12',
                 polyhedral: Polyhedrals.poly12,
                 color: Color(0xFFB6B6B6),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D14',
                 label: 'D14',
                 polyhedral: Polyhedrals.poly14,
                 color: Color(0xFF99FF00),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D16',
                 label: 'D16',
                 polyhedral: Polyhedrals.poly16,
                 color: Color(0xFF00FFC4),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D20',
                 label: 'D20',
                 polyhedral: Polyhedrals.poly20,
                 color: Color(0xFF00D9FF),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D24',
                 label: 'D24',
                 polyhedral: Polyhedrals.poly24,
                 color: Color(0xFFE6E6E6),
+                isReversed: true,
               ),
               diceWidget(
                 value: 'D30',

@@ -41,60 +41,73 @@ enum Polyhedrals {
 
 Widget diceWidget({
   Color color = const Color(0xFF88636A),
-  bool hasDarkText = false,
+  bool isReversed = false,
   // Color? highlightColor,
   // Color? diceTextColor,
   // Color? labelColor,
   double width = 80,
   Polyhedrals polyhedral = Polyhedrals.poly6,
-  double nudgePercent = 0.2,
+  // double nudgePercent = 0.2,
   String? label,
   Glyph? glyph,
   required String value,
+  bool addTextShadow = false,
 }) {
-  Color darkenedColor = darken(color, 30);
-  String hexColor = convertColorToHex(color);
-  String hexDarkenedColor = convertColorToHex(darkenedColor);
+  DiceColorSet colorSet = getDiceColors(
+    color: color,
+    isReversed: isReversed,
+  );
+
+  DiceStyle currentStyle = cyberpunkDiceStyle;
+
   return Column(
     children: [
       SizedBox(
         width: width,
         height: width,
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            SvgPicture.string(
-              injectColoursIntoSVG(
-                polyhedral.image,
-                hexColor,
-                hexDarkenedColor,
+        child: DefaultTextStyle(
+          style: currentStyle.textStyle,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              SvgPicture.string(
+                injectColoursIntoSVG(
+                  polyhedral.image,
+                  convertColorToHex(colorSet.diceColor),
+                  convertColorToHex(colorSet.shadowColor),
+                ),
+                width: width,
+                height: width,
+                alignment: Alignment.bottomCenter,
               ),
-              width: width,
-              height: width,
-              alignment: Alignment.bottomCenter,
-            ),
-            Positioned(
-              // top: width * nudgePercent,
-              bottom: width * nudgePercent,
-              child: Center(
-                child: Text(
-                  value,
-                  style: TextStyle(
-                    letterSpacing: -2,
-                    color: CupertinoColors.white,
-                    fontSize: width * 0.5,
-                    shadows: addShadow(color: darkenedColor),
+              Positioned(
+                // top: width * nudgePercent,
+                bottom: width * currentStyle.nudgePercent,
+                child: Center(
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      letterSpacing: currentStyle.letterSpacing,
+                      color: colorSet.textColor,
+                      fontSize: width * currentStyle.textScale,
+                      shadows: addTextShadow
+                          ? addShadow(color: colorSet.textShadowColor)
+                          : null,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       if (label != null)
         Text(
           label,
-          style: TextStyle(color: darkenedColor),
+          style: TextStyle(
+            color: colorSet.labelColor,
+            fontSize: width * 0.3,
+          ),
         ),
     ],
   );
@@ -123,3 +136,71 @@ addShadow({
         color: color),
   ];
 }
+
+class DiceColorSet {
+  late Color diceColor;
+  late Color shadowColor;
+  late Color textColor;
+  late Color textShadowColor;
+  late Color labelColor;
+
+  DiceColorSet({
+    required this.diceColor,
+    required this.shadowColor,
+    required this.textColor,
+    required this.textShadowColor,
+    required this.labelColor,
+  });
+}
+
+DiceColorSet getDiceColors({
+  required Color color,
+  bool isReversed = false,
+}) {
+  return isReversed
+      ? DiceColorSet(
+          diceColor: color,
+          shadowColor: darken(color, 20),
+          textColor: darken(color, 50),
+          textShadowColor: lighten(color),
+          labelColor: darken(color, 60),
+        )
+      : DiceColorSet(
+          diceColor: color,
+          shadowColor: darken(color, 15),
+          textColor: lighten(color, 90),
+          textShadowColor: darken(color, 40),
+          labelColor: darken(color),
+        );
+}
+
+class DiceStyle {
+  TextStyle textStyle;
+  double textScale;
+  double letterSpacing;
+  num nudgePercent;
+
+  DiceStyle({
+    required this.textStyle,
+    required this.textScale,
+    this.letterSpacing = 1.0,
+    this.nudgePercent = 0.0,
+  });
+}
+
+DiceStyle scifiDiceStyle = DiceStyle(
+  textScale: 0.5,
+  nudgePercent: 0.22,
+  letterSpacing: -5,
+  textStyle: TextStyle(
+    fontFamily: 'Geo',
+  ),
+);
+
+DiceStyle cyberpunkDiceStyle = DiceStyle(
+  textScale: 0.35,
+  textStyle: TextStyle(
+    fontFamily: 'RussoOne',
+  ),
+  nudgePercent: 0.25,
+);
