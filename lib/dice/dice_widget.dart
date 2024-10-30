@@ -47,7 +47,7 @@ Widget diceWidget({
   // Color? labelColor,
   double width = 80,
   Polyhedrals polyhedral = Polyhedrals.poly6,
-  // double nudgePercent = 0.2,
+  double? nudgePercent,
   String? label,
   Glyph? glyph,
   required String value,
@@ -58,7 +58,7 @@ Widget diceWidget({
     isReversed: isReversed,
   );
 
-  DiceStyle currentStyle = cyberpunkDiceStyle;
+  DiceStyle currentStyle = scifiDiceStyle;
 
   return Column(
     children: [
@@ -73,8 +73,8 @@ Widget diceWidget({
               SvgPicture.string(
                 injectColoursIntoSVG(
                   polyhedral.image,
-                  convertColorToHex(colorSet.diceColor),
-                  convertColorToHex(colorSet.shadowColor),
+                  colorSet.diceColor,
+                  colorSet.shadowColor,
                 ),
                 width: width,
                 height: width,
@@ -82,7 +82,7 @@ Widget diceWidget({
               ),
               Positioned(
                 // top: width * nudgePercent,
-                bottom: width * currentStyle.nudgePercent,
+                bottom: width * (nudgePercent ?? currentStyle.nudgePercent),
                 child: Center(
                   child: Text(
                     value,
@@ -106,7 +106,7 @@ Widget diceWidget({
           label,
           style: TextStyle(
             color: colorSet.labelColor,
-            fontSize: width * 0.3,
+            fontSize: width * 0.2,
           ),
         ),
     ],

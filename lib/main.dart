@@ -38,7 +38,7 @@ class HomeState extends State<Home> {
       style: TextStyle(
         decoration: TextDecoration.none,
         // fontFamily: 'RussoOne',
-        fontFamily: 'Geo',
+        // fontFamily: 'Geo',
       ),
       child: CupertinoPageScaffold(
         child: SafeArea(
@@ -55,7 +55,7 @@ class HomeState extends State<Home> {
                 value: 'D4',
                 label: 'D4',
                 polyhedral: Polyhedrals.poly4,
-                // nudgePercent: 0.12,
+                nudgePercent: 0.12,
                 color: Color(0xFFFFA600),
               ),
               diceWidget(
