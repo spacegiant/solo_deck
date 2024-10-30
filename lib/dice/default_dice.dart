@@ -1,4 +1,8 @@
+import 'dart:ui';
+
+import 'dice_widget.dart';
 import 'die.dart';
+import 'die_side.dart';
 
 List<DieSide> generateFaces({required int numberOfFaces, int units = 1}) {
   return List.generate(
@@ -10,136 +14,110 @@ List<DieSide> generateFaces({required int numberOfFaces, int units = 1}) {
   );
 }
 
-DieOld d2 = DieOld(
-  dieTypeGlyph: Glyph.d2,
-  diceName: 'Coin',
-  faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
-  polyhedralImage: PolyhedralImage.two,
-);
-
-DieOld d3 = DieOld(
-  dieTypeGlyph: Glyph.d3,
-  diceName: 'd3',
-  faces: generateFaces(numberOfFaces: 3),
-  polyhedralImage: PolyhedralImage.six,
-);
-
-DieOld d4 = DieOld(
-  dieTypeGlyph: Glyph.d4,
-  diceName: 'd4',
-  faces: generateFaces(numberOfFaces: 4),
-  polyhedralImage: PolyhedralImage.four,
-);
-
-DieOld d5 = DieOld(
-  dieTypeGlyph: Glyph.d5,
-  diceName: 'd5',
-  faces: generateFaces(numberOfFaces: 5),
-  polyhedralImage: PolyhedralImage.five,
-);
-
-DieOld d6 = DieOld(
-  dieTypeGlyph: Glyph.d6,
-  diceName: 'd6',
-  faces: generateFaces(numberOfFaces: 6),
-  polyhedralImage: PolyhedralImage.six,
-);
-
-DieOld d7 = DieOld(
-  dieTypeGlyph: Glyph.d7,
-  diceName: 'd7',
-  faces: generateFaces(numberOfFaces: 7),
-  polyhedralImage: PolyhedralImage.seven,
-);
-
-DieOld d8 = DieOld(
-  dieTypeGlyph: Glyph.d8,
-  diceName: 'd8',
-  faces: generateFaces(numberOfFaces: 8),
-  polyhedralImage: PolyhedralImage.eight,
-);
-
-DieOld d10Units = DieOld(
-  dieTypeGlyph: Glyph.d10Units,
-  diceName: 'd10 units',
-  faces: generateFaces(numberOfFaces: 10),
-  polyhedralImage: PolyhedralImage.ten,
-);
-
-DieOld d10Tens = DieOld(
-  dieTypeGlyph: Glyph.d10Tens,
-  diceName: 'd10 tens',
-  faces: List.generate(10, (value) {
-    int newValue = value * 10;
-    return DieSide(
-      label: newValue == 0 ? '00' : '$newValue',
-      value: newValue,
-    );
-  }),
-  polyhedralImage: PolyhedralImage.ten,
-);
-
-DieOld d12 = DieOld(
-  dieTypeGlyph: Glyph.d12,
-  diceName: 'd12',
-  faces: generateFaces(numberOfFaces: 12),
-  polyhedralImage: PolyhedralImage.twelve,
-);
-
-DieOld d14 = DieOld(
-  dieTypeGlyph: Glyph.d14,
-  diceName: 'd14',
-  faces: generateFaces(numberOfFaces: 14),
-  polyhedralImage: PolyhedralImage.fourteen,
-);
-
-DieOld d16 = DieOld(
-  dieTypeGlyph: Glyph.d16,
-  diceName: 'd16',
-  faces: generateFaces(numberOfFaces: 16),
-  polyhedralImage: PolyhedralImage.sixteen,
-);
-
-DieOld d20 = DieOld(
-  dieTypeGlyph: Glyph.d20,
-  diceName: 'd20',
-  faces: generateFaces(numberOfFaces: 20),
-  polyhedralImage: PolyhedralImage.twenty,
-);
-
-DieOld d24 = DieOld(
-  dieTypeGlyph: Glyph.d24,
-  diceName: 'd24',
-  faces: generateFaces(numberOfFaces: 24),
-  polyhedralImage: PolyhedralImage.twentyFour,
-);
-
-DieOld d30 = DieOld(
-  dieTypeGlyph: Glyph.d30,
-  diceName: 'd30',
-  faces: generateFaces(numberOfFaces: 30),
-  polyhedralImage: PolyhedralImage.thirty,
-);
-
-DieOld dF = DieOld(
-  dieTypeGlyph: Glyph.fateLogo,
-  diceName: 'Fate Die',
-  faces: [
-    DieSide(label: '+', value: 1, glyph: Glyph.fatePlus),
-    DieSide(label: '0', value: 0, glyph: Glyph.fateBlank),
-    DieSide(label: '-', value: -1, glyph: Glyph.fateMinus),
-  ],
-  polyhedralImage: PolyhedralImage.six,
-);
-
-DieOld dAtoD = DieOld(
-  dieTypeGlyph: Glyph.d2,
-  faces: [
-    DieSide(label: 'A'),
-    DieSide(label: 'B'),
-    DieSide(label: 'C'),
-    DieSide(label: 'D'),
-  ],
-  diceName: 'dAtoD',
-  polyhedralImage: PolyhedralImage.four,
-);
+List<Die> defaultDice = [
+  Die(
+    value: 'Dx',
+    diceName: 'Dx',
+    polyhedral: Polyhedrals.poly6,
+    color: Color(0xFFFF0000),
+    faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
+  ),
+  Die(
+    value: 'D2',
+    diceName: 'D2',
+    polyhedral: Polyhedrals.poly2,
+    color: Color(0xFFFF0000),
+    faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
+  ),
+  Die(
+    value: '4',
+    diceName: 'D4',
+    polyhedral: Polyhedrals.poly4,
+    color: Color(0xFFFFA600),
+    isReversed: true,
+    nudgePercent: 0.15,
+    faces: generateFaces(numberOfFaces: 4),
+  ),
+  Die(
+    value: 'D5',
+    diceName: 'D5',
+    polyhedral: Polyhedrals.poly5,
+    color: Color(0xFF4DA54A),
+    faces: generateFaces(numberOfFaces: 5),
+  ),
+  Die(
+    value: 'D6',
+    diceName: 'D6',
+    polyhedral: Polyhedrals.poly6,
+    color: Color(0xFF006FFF),
+    faces: generateFaces(numberOfFaces: 6),
+  ),
+  Die(
+    value: 'D7',
+    diceName: 'D7',
+    polyhedral: Polyhedrals.poly7,
+    color: Color(0xFFFFED00),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 7),
+  ),
+  Die(
+    value: 'D8',
+    diceName: 'D8',
+    polyhedral: Polyhedrals.poly8,
+    color: Color(0xFF4000FF),
+    faces: generateFaces(numberOfFaces: 8),
+  ),
+  Die(
+    value: 'D10',
+    diceName: 'D10',
+    polyhedral: Polyhedrals.poly10,
+    color: Color(0xFFC800FF),
+    faces: generateFaces(numberOfFaces: 10),
+  ),
+  Die(
+    value: 'D12',
+    diceName: 'D12',
+    polyhedral: Polyhedrals.poly12,
+    color: Color(0xFFB6B6B6),
+    faces: generateFaces(numberOfFaces: 12),
+  ),
+  Die(
+    value: 'D14',
+    diceName: 'D14',
+    polyhedral: Polyhedrals.poly14,
+    color: Color(0xFF99FF00),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 14),
+  ),
+  Die(
+    value: 'D16',
+    diceName: 'D16',
+    polyhedral: Polyhedrals.poly16,
+    color: Color(0xFF00FFC4),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 16),
+  ),
+  Die(
+    value: 'D20',
+    diceName: 'D20',
+    polyhedral: Polyhedrals.poly20,
+    color: Color(0xFF00D9FF),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 20),
+  ),
+  Die(
+    value: 'D24',
+    diceName: 'D24',
+    polyhedral: Polyhedrals.poly24,
+    color: Color(0xFFE6E6E6),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 24),
+  ),
+  Die(
+    value: 'D30',
+    diceName: 'D30',
+    polyhedral: Polyhedrals.poly30,
+    color: Color(0xFF5A5A5A),
+    faces: generateFaces(numberOfFaces: 30),
+  ),
+];
