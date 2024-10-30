@@ -2,109 +2,114 @@ import 'package:SoloDeck/dice/dice_widget.dart';
 import 'package:SoloDeck/themes/themes.dart';
 import 'package:flutter/cupertino.dart';
 
-class DiceConfig {
-  late String value;
-  late String label;
-  late Polyhedrals polyhedral;
-  late Color color;
-  bool? isReversed;
-  double? nudgePercent;
+import 'dice/default_dice.dart';
+import 'dice/die.dart';
 
-  DiceConfig({
-    required this.value,
-    required this.label,
-    required this.polyhedral,
-    required this.color,
-    this.isReversed,
-    this.nudgePercent,
-  });
-}
-
-List<DiceConfig> diceConfig = [
-  DiceConfig(
+List<Die> diceConfig = [
+  Die(
+    value: 'Dx',
+    diceName: 'Dx',
+    polyhedral: Polyhedrals.poly6,
+    color: Color(0xFFFF0000),
+    faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
+  ),
+  Die(
     value: 'D2',
-    label: 'D2',
+    diceName: 'D2',
     polyhedral: Polyhedrals.poly2,
     color: Color(0xFFFF0000),
+    faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
   ),
-  DiceConfig(
-    value: 'D4',
-    label: 'D4',
+  Die(
+    value: '4',
+    diceName: 'D4',
     polyhedral: Polyhedrals.poly4,
     color: Color(0xFFFFA600),
     isReversed: true,
-    nudgePercent: 0.1,
+    nudgePercent: 0.15,
+    faces: generateFaces(numberOfFaces: 4),
   ),
-  DiceConfig(
-    value: 'D6',
-    label: 'D6',
-    polyhedral: Polyhedrals.poly6,
-    color: Color(0xFFFFED00),
-    isReversed: true,
-  ),
-  DiceConfig(
+  Die(
     value: 'D5',
-    label: 'D5',
+    diceName: 'D5',
     polyhedral: Polyhedrals.poly5,
     color: Color(0xFF4DA54A),
+    faces: generateFaces(numberOfFaces: 5),
   ),
-  DiceConfig(
+  Die(
     value: 'D6',
-    label: 'D6',
+    diceName: 'D6',
     polyhedral: Polyhedrals.poly6,
     color: Color(0xFF006FFF),
+    faces: generateFaces(numberOfFaces: 6),
   ),
-  DiceConfig(
+  Die(
+    value: 'D7',
+    diceName: 'D7',
+    polyhedral: Polyhedrals.poly7,
+    color: Color(0xFFFFED00),
+    isReversed: true,
+    faces: generateFaces(numberOfFaces: 7),
+  ),
+  Die(
     value: 'D8',
-    label: 'D8',
+    diceName: 'D8',
     polyhedral: Polyhedrals.poly8,
     color: Color(0xFF4000FF),
+    faces: generateFaces(numberOfFaces: 8),
   ),
-  DiceConfig(
+  Die(
     value: 'D10',
-    label: 'D10',
+    diceName: 'D10',
     polyhedral: Polyhedrals.poly10,
     color: Color(0xFFC800FF),
+    faces: generateFaces(numberOfFaces: 10),
   ),
-  DiceConfig(
+  Die(
     value: 'D12',
-    label: 'D12',
+    diceName: 'D12',
     polyhedral: Polyhedrals.poly12,
     color: Color(0xFFB6B6B6),
+    faces: generateFaces(numberOfFaces: 12),
   ),
-  DiceConfig(
+  Die(
     value: 'D14',
-    label: 'D14',
+    diceName: 'D14',
     polyhedral: Polyhedrals.poly14,
     color: Color(0xFF99FF00),
     isReversed: true,
+    faces: generateFaces(numberOfFaces: 14),
   ),
-  DiceConfig(
+  Die(
     value: 'D16',
-    label: 'D16',
+    diceName: 'D16',
     polyhedral: Polyhedrals.poly16,
     color: Color(0xFF00FFC4),
     isReversed: true,
+    faces: generateFaces(numberOfFaces: 16),
   ),
-  DiceConfig(
+  Die(
     value: 'D20',
-    label: 'D20',
+    diceName: 'D20',
     polyhedral: Polyhedrals.poly20,
     color: Color(0xFF00D9FF),
     isReversed: true,
+    faces: generateFaces(numberOfFaces: 20),
   ),
-  DiceConfig(
+  Die(
     value: 'D24',
-    label: 'D24',
+    diceName: 'D24',
     polyhedral: Polyhedrals.poly24,
     color: Color(0xFFE6E6E6),
     isReversed: true,
+    faces: generateFaces(numberOfFaces: 24),
   ),
-  DiceConfig(
+  Die(
     value: 'D30',
-    label: 'D30',
+    diceName: 'D30',
     polyhedral: Polyhedrals.poly30,
     color: Color(0xFF5A5A5A),
+    faces: generateFaces(numberOfFaces: 30),
   ),
 ];
 
@@ -154,7 +159,7 @@ class HomeState extends State<Home> {
                 .map(
                   (die) => diceWidget(
                     value: die.value,
-                    label: die.label,
+                    label: die.diceName,
                     polyhedral: die.polyhedral,
                     color: die.color,
                     isReversed: die.isReversed ?? false,

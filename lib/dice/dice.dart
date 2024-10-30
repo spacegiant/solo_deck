@@ -22,7 +22,7 @@ class DiceBag {
 // Used only for grouping dice for user settings. Users can toggle dice collections on/off
 class DiceSet {
   late String id;
-  late List<Die> dice;
+  late List<DieOld> dice;
 }
 
 class DiceWidgetSettings {

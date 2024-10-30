@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'default_dice.dart';
+import 'dice_widget.dart';
 
 var diceBox = <String, List<Die>>{
   'general': [d4, d6, d8, d10Units, d10Tens, d12, d20],
@@ -100,30 +101,23 @@ enum PolyhedralImage {
 }
 
 class Die {
-  String? id = '${DateTime.now().millisecondsSinceEpoch}';
-  String diceName;
+  late String value;
+  late String diceName;
+  late Polyhedrals polyhedral;
+  late Color color;
+  bool? isReversed;
+  double? nudgePercent;
   List<DieSide> faces;
-  Glyph dieTypeGlyph;
-  late PolyhedralImage polyhedralImage = PolyhedralImage.fallback;
-  // Users can specify dice of certain colours. E.g. red d6, black d6 and white d6 with different meanings attached to each colour
-  late Color? colour = const Color(0xff000000);
 
   Die({
-    this.id,
+    required this.value,
     required this.diceName,
+    required this.polyhedral,
+    required this.color,
+    this.isReversed,
+    this.nudgePercent,
     required this.faces,
-    required this.polyhedralImage,
-    required this.dieTypeGlyph,
-    this.colour,
   });
-
-  DieRollResult roll() {
-    var randomIndex = Random().nextInt(faces.length);
-    return DieRollResult(
-        diceName: diceName,
-        value: faces[randomIndex].value,
-        label: faces[randomIndex].label);
-  }
 }
 
 class DieRollResult {

@@ -1,7 +1,7 @@
 import 'die.dart';
 
 class DiceRoll {
-  late List<Die> thrownDice;
+  late List<DieOld> thrownDice;
   int modifier;
   bool? explode;
   bool? advantage;

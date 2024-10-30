@@ -10,63 +10,63 @@ List<DieSide> generateFaces({required int numberOfFaces, int units = 1}) {
   );
 }
 
-Die d2 = Die(
+DieOld d2 = DieOld(
   dieTypeGlyph: Glyph.d2,
   diceName: 'Coin',
   faces: [DieSide(label: 'Heads'), DieSide(label: 'Tails')],
   polyhedralImage: PolyhedralImage.two,
 );
 
-Die d3 = Die(
+DieOld d3 = DieOld(
   dieTypeGlyph: Glyph.d3,
   diceName: 'd3',
   faces: generateFaces(numberOfFaces: 3),
   polyhedralImage: PolyhedralImage.six,
 );
 
-Die d4 = Die(
+DieOld d4 = DieOld(
   dieTypeGlyph: Glyph.d4,
   diceName: 'd4',
   faces: generateFaces(numberOfFaces: 4),
   polyhedralImage: PolyhedralImage.four,
 );
 
-Die d5 = Die(
+DieOld d5 = DieOld(
   dieTypeGlyph: Glyph.d5,
   diceName: 'd5',
   faces: generateFaces(numberOfFaces: 5),
   polyhedralImage: PolyhedralImage.five,
 );
 
-Die d6 = Die(
+DieOld d6 = DieOld(
   dieTypeGlyph: Glyph.d6,
   diceName: 'd6',
   faces: generateFaces(numberOfFaces: 6),
   polyhedralImage: PolyhedralImage.six,
 );
 
-Die d7 = Die(
+DieOld d7 = DieOld(
   dieTypeGlyph: Glyph.d7,
   diceName: 'd7',
   faces: generateFaces(numberOfFaces: 7),
   polyhedralImage: PolyhedralImage.seven,
 );
 
-Die d8 = Die(
+DieOld d8 = DieOld(
   dieTypeGlyph: Glyph.d8,
   diceName: 'd8',
   faces: generateFaces(numberOfFaces: 8),
   polyhedralImage: PolyhedralImage.eight,
 );
 
-Die d10Units = Die(
+DieOld d10Units = DieOld(
   dieTypeGlyph: Glyph.d10Units,
   diceName: 'd10 units',
   faces: generateFaces(numberOfFaces: 10),
   polyhedralImage: PolyhedralImage.ten,
 );
 
-Die d10Tens = Die(
+DieOld d10Tens = DieOld(
   dieTypeGlyph: Glyph.d10Tens,
   diceName: 'd10 tens',
   faces: List.generate(10, (value) {
@@ -79,49 +79,49 @@ Die d10Tens = Die(
   polyhedralImage: PolyhedralImage.ten,
 );
 
-Die d12 = Die(
+DieOld d12 = DieOld(
   dieTypeGlyph: Glyph.d12,
   diceName: 'd12',
   faces: generateFaces(numberOfFaces: 12),
   polyhedralImage: PolyhedralImage.twelve,
 );
 
-Die d14 = Die(
+DieOld d14 = DieOld(
   dieTypeGlyph: Glyph.d14,
   diceName: 'd14',
   faces: generateFaces(numberOfFaces: 14),
   polyhedralImage: PolyhedralImage.fourteen,
 );
 
-Die d16 = Die(
+DieOld d16 = DieOld(
   dieTypeGlyph: Glyph.d16,
   diceName: 'd16',
   faces: generateFaces(numberOfFaces: 16),
   polyhedralImage: PolyhedralImage.sixteen,
 );
 
-Die d20 = Die(
+DieOld d20 = DieOld(
   dieTypeGlyph: Glyph.d20,
   diceName: 'd20',
   faces: generateFaces(numberOfFaces: 20),
   polyhedralImage: PolyhedralImage.twenty,
 );
 
-Die d24 = Die(
+DieOld d24 = DieOld(
   dieTypeGlyph: Glyph.d24,
   diceName: 'd24',
   faces: generateFaces(numberOfFaces: 24),
   polyhedralImage: PolyhedralImage.twentyFour,
 );
 
-Die d30 = Die(
+DieOld d30 = DieOld(
   dieTypeGlyph: Glyph.d30,
   diceName: 'd30',
   faces: generateFaces(numberOfFaces: 30),
   polyhedralImage: PolyhedralImage.thirty,
 );
 
-Die dF = Die(
+DieOld dF = DieOld(
   dieTypeGlyph: Glyph.fateLogo,
   diceName: 'Fate Die',
   faces: [
@@ -132,7 +132,7 @@ Die dF = Die(
   polyhedralImage: PolyhedralImage.six,
 );
 
-Die dAtoD = Die(
+DieOld dAtoD = DieOld(
   dieTypeGlyph: Glyph.d2,
   faces: [
     DieSide(label: 'A'),
