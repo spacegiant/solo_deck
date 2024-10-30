@@ -42,9 +42,6 @@ enum Polyhedrals {
 Widget diceWidget({
   Color color = const Color(0xFF88636A),
   bool isReversed = false,
-  // Color? highlightColor,
-  // Color? diceTextColor,
-  // Color? labelColor,
   double width = 80,
   Polyhedrals polyhedral = Polyhedrals.poly6,
   double? nudgePercent,
@@ -81,7 +78,6 @@ Widget diceWidget({
                 alignment: Alignment.bottomCenter,
               ),
               Positioned(
-                // top: width * nudgePercent,
                 bottom: width * (nudgePercent ?? currentStyle.nudgePercent),
                 child: Center(
                   child: Text(
