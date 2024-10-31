@@ -45,9 +45,9 @@ Widget diceWidget({
   double width = 80,
   Polyhedrals polyhedral = Polyhedrals.poly6,
   double? nudgePercent,
-  String? label,
+  String? diceType,
   Glyph? glyph,
-  required String value,
+  required String label,
   bool addTextShadow = false,
 }) {
   DiceColorSet colorSet = getDiceColors(
@@ -81,7 +81,7 @@ Widget diceWidget({
                 bottom: width * (nudgePercent ?? currentStyle.nudgePercent),
                 child: Center(
                   child: Text(
-                    value,
+                    label,
                     style: TextStyle(
                       letterSpacing: currentStyle.letterSpacing,
                       color: colorSet.textColor,
@@ -97,9 +97,9 @@ Widget diceWidget({
           ),
         ),
       ),
-      if (label != null)
+      if (diceType != null)
         Text(
-          label,
+          diceType,
           style: TextStyle(
             color: colorSet.labelColor,
             fontSize: width * 0.2,

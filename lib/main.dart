@@ -49,8 +49,8 @@ class HomeState extends State<Home> {
             children: defaultDice
                 .map(
                   (die) => diceWidget(
-                    value: die.value,
-                    label: die.diceName,
+                    label: die.roll().label,
+                    diceType: die.diceName,
                     polyhedral: die.polyhedral,
                     color: die.color,
                     isReversed: die.isReversed ?? false,

@@ -126,9 +126,11 @@ class Die {
   });
 
   DieRollResult roll() {
+    var randomRoll = Random().nextInt(faces.length);
     return DieRollResult(
-      diceName: 'test',
-      label: 'label',
+      diceName: diceName,
+      label: faces[randomRoll].label,
+      value: faces[randomRoll].value,
     );
   }
 }
